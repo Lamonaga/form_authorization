@@ -2,7 +2,7 @@ import './App.css';
 import {useFormik} from "formik";
 import {Input} from "./components";
 import * as yup from 'yup'
-import {logDOM} from "@testing-library/react";
+
 
 function App() {
 
@@ -17,21 +17,19 @@ function App() {
     const formik = useFormik({
         initialValues: {
             name: '', surname: '', email: '', password: '', confirmPassword: '',
-        },
-        onSubmit: values => {
+        }, onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
-        },
-        validateOnBlur: true,
-        validationSchema: validationsSchema,
+        }, validateOnBlur: true, validationSchema: validationsSchema,
 
 
     });
 
 
-    return (<div className="App">
-        <form onSubmit={formik.handleSubmit}>
+    return (<div className="form_auth">
+        <form className='form' onSubmit={formik.handleSubmit}>
 
-            <label htmlFor={'name'}>Name</label>
+            <label htmlFor={'name'}>Name</label>{formik.touched.name && formik.errors.name && (
+            <p className='error'>{formik.errors.name}</p>)}
             <p>
                 <Input id="name"
                        name="name"
@@ -40,8 +38,9 @@ function App() {
                        value={formik.values.name}
                 />
             </p>
-            {formik.touched.name && formik.errors.name && (<p>{formik.errors.name}</p>)}
-            <label htmlFor="surname">Surname</label>
+
+            <label htmlFor="surname">Surname</label>{formik.touched.surname && formik.errors.surname && (
+            <p className='error'>{formik.errors.surname}</p>)}
             <p>
                 <Input
                     id="surname"
@@ -51,8 +50,9 @@ function App() {
                     value={formik.values.surname}
                 />
             </p>
-            {formik.touched.surname && formik.errors.surname && (<p>{formik.errors.surname}</p>)}
-            <label htmlFor="email">Email Address</label>
+
+            <label htmlFor="email">Email Address</label>{formik.touched.email && formik.errors.email && (
+            <p className='error'>{formik.errors.email}</p>)}
             <p>
                 <Input
                     id="email"
@@ -62,8 +62,9 @@ function App() {
                     value={formik.values.email}
                 />
             </p>
-            {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
-            <label htmlFor="password">Password</label>
+
+            <label htmlFor="password">Password</label>{formik.touched.password && formik.errors.password && (
+            <p className='error'>{formik.errors.password}</p>)}
             <p>
                 <Input
                     id="password"
@@ -73,8 +74,10 @@ function App() {
                     value={formik.values.password}
                 />
             </p>
-            {formik.touched.password && formik.errors.password && (<p>{formik.errors.password}</p>)}
-            <label htmlFor="confirmPassword">ConfirmPassword</label>
+
+            <label
+                htmlFor="confirmPassword">ConfirmPassword</label>{formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <p className='error'>{formik.errors.confirmPassword}</p>)}
             <p>
                 <Input
                     id="confirmPassword"
@@ -84,8 +87,8 @@ function App() {
                     value={formik.values.confirmPassword}
                 />
             </p>
-            {formik.touched.confirmPassword && formik.errors.confirmPassword && (<p>{formik.errors.confirmPassword}</p>)}
-            <button type="submit">Submit</button>
+
+            <button className='btn_submit' type="submit">Submit</button>
         </form>
     </div>);
 }

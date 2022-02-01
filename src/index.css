@@ -14,3 +14,27 @@ code {
 p {
   margin: 5px;
 }
+
+.error {
+  color: red;
+  display: inline;
+}
+
+.form_auth {
+  margin: 20px auto;
+  width: 500px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.btn_submit {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
