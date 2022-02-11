@@ -57,8 +57,8 @@ const Login = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
-			{data.statusError === 'auth/user-not-found' ? <div className='error'>Такой email не зареган</div> : <></>}
-			{data.statusError === 'auth/wrong-password' ? <div className='error'>Пароль не верный </div> : <></>}
+			{data.statusError === 'auth/user-not-found' ? <div className='error'>email is not correct</div> : <></>}
+			{data.statusError === 'auth/wrong-password' ? <div className='error'>Wrong password </div> : <></>}
 		</div>
 	)
 }

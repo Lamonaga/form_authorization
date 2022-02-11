@@ -96,8 +96,8 @@ const Join = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
-			{data.statusError === 'auth/email-already-in-use' ? <div className='error'>Такой email уже зареган</div> : <></>}
-			{data.statusError === 'auth/weak-password' ? <div className='error'>Пароль должен содержать более 6 символов</div> : <></>}
+			{data.statusError === 'auth/email-already-in-use' ? <div className='error'>This email is not registered</div> : <></>}
+			{data.statusError === 'auth/weak-password' ? <div className='error'>Password must be more than 6 characters</div> : <></>}
 		</div>
 	)
 }
