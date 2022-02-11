@@ -3,18 +3,18 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 
 import createSagaMiddleware from 'redux-saga'
 import {reqReducer} from "./reqReducer";
-import {reqWatcher} from "../sagas/reqSagas";
+import rootSaga from "../sagas";
 
 
 const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({
-	reqData: reqReducer
+	regUser: reqReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
 
-sagaMiddleware.run(reqWatcher)
+sagaMiddleware.run(rootSaga)
 
 
 export default store

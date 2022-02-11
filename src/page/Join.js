@@ -10,8 +10,7 @@ import {FETCH_MESSAGES_REQUEST} from "../../src/store/reqReducer";
 
 const Join = () => {
 	const dispatch = useDispatch()
-	const reqData = useSelector(state => state.reqData.data)
-	console.log()
+	const data = useSelector(state => state.regUser)
 
 	const handleReq = () => {
 		dispatch({type: FETCH_MESSAGES_REQUEST, payload: formik.values})
@@ -97,6 +96,8 @@ const Join = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
+			{data.statusError === 'auth/email-already-in-use' ? <div className='error'>Такой email уже зареган</div> : <></>}
+			{data.statusError === 'auth/weak-password' ? <div className='error'>Пароль должен содержать более 6 символов</div> : <></>}
 		</div>
 	)
 }

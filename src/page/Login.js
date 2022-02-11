@@ -2,17 +2,18 @@ import {Input} from "../components";
 import {useFormik} from "formik";
 
 import * as yup from 'yup'
+
 import {useDispatch, useSelector} from "react-redux";
-import {FETCH_MESSAGES_REQUEST} from "../../src/store/reqReducer";
+import {FETCH_SIGNIN_REQUEST} from "../../src/store/reqReducer";
 
 
 const Login = () => {
 
 	const dispatch = useDispatch()
-	const reqData = useSelector(state => state.reqData.data)
+	const data = useSelector(state => state.regUser)
 
 	const handleReq = () => {
-		dispatch({type: FETCH_MESSAGES_REQUEST, payload: {data: {email: formik.values.email, password: formik.values.password}}})
+		dispatch({type: FETCH_SIGNIN_REQUEST, payload: formik.values})
 	}
 
 	const validationsSchema = yup.object().shape({
@@ -25,9 +26,6 @@ const Login = () => {
 			email: '', password: '',
 		}, onSubmit: handleReq, validateOnBlur: true, validationSchema: validationsSchema,
 	});
-
-
-	console.log(reqData)
 
 	return (
 		<div className="form_auth">
@@ -59,6 +57,8 @@ const Login = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
+			{data.statusError === 'auth/user-not-found' ? <div className='error'>Такой email не зареган</div> : <></>}
+			{data.statusError === 'auth/wrong-password' ? <div className='error'>Пароль не верный </div> : <></>}
 		</div>
 	)
 }

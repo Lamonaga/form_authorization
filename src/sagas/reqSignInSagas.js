@@ -1,17 +1,15 @@
 import {put, takeLatest} from 'redux-saga/effects'
 import {
-	actionReqData,
 	FETCH_MESSAGES_FAILURE,
-	FETCH_MESSAGES_REQUEST,
-	FETCH_MESSAGES_SUCCESS
+	FETCH_MESSAGES_SUCCESS, FETCH_SIGNIN_REQUEST
 } from "../store/reqReducer";
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../firebase";
 
 
-export function* reqWorker({payload}) {
+export function* reqSignInWorker({payload}) {
 	try {
-		yield createUserWithEmailAndPassword(auth, payload.email, payload.password)
+		yield signInWithEmailAndPassword(auth, payload.email, payload.password)
 			.then((userCredential) => {
 				const user = userCredential.user
 			})
@@ -23,6 +21,6 @@ export function* reqWorker({payload}) {
 }
 
 
-export function* reqWatcher() {
-	yield takeLatest(FETCH_MESSAGES_REQUEST, reqWorker)
+export function* reqSignInWatcher() {
+	yield takeLatest(FETCH_SIGNIN_REQUEST, reqSignInWorker)
 }
