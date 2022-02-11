@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {FETCH_MESSAGES_REQUEST} from "../../src/store/reqReducer";
 import {useEffect} from "react";
+import ErrorAuth from "../components/ErrorAuth";
 
 
 const Join = () => {
@@ -15,7 +16,7 @@ const Join = () => {
 	const dispatch = useDispatch()
 	const data = useSelector(state => state.regUser)
 
-	const handleReq = async () => {
+	const handleReq = () => {
 		dispatch({type: FETCH_MESSAGES_REQUEST, payload: formik.values})
 		formik.setStatus(undefined)
 	}
@@ -107,10 +108,7 @@ const Join = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
-			{formik.status === 'auth/invalid-email' ?
-				<div className='error'>This email is not registered</div> : <></>}
-			{formik.status === 'auth/weak-password' ?
-				<div className='error'>Password must be more than 6 characters</div> : <></>}
+			<ErrorAuth status={formik.status}/>
 		</div>
 	)
 }

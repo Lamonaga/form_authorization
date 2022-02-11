@@ -5,16 +5,26 @@ import * as yup from 'yup'
 
 import {useDispatch, useSelector} from "react-redux";
 import {FETCH_SIGNIN_REQUEST} from "../../src/store/reqReducer";
+import {useEffect} from "react";
+import ErrorAuth from "../components/ErrorAuth";
 
 
 const Login = () => {
+	const error = []
 
 	const dispatch = useDispatch()
 	const data = useSelector(state => state.regUser)
 
 	const handleReq = () => {
 		dispatch({type: FETCH_SIGNIN_REQUEST, payload: formik.values})
+		formik.setStatus(undefined)
 	}
+
+	error.push(data.statusError)
+	console.log(data.statusError)
+	useEffect(() => {
+		formik.setStatus(data.statusError)
+	}, error)
 
 	const validationsSchema = yup.object().shape({
 		email: yup.string().required('Required'),
@@ -57,8 +67,7 @@ const Login = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
-			{data.statusError === 'auth/user-not-found' ? <div className='error'>email is not correct</div> : <></>}
-			{data.statusError === 'auth/wrong-password' ? <div className='error'>Wrong password </div> : <></>}
+			<ErrorAuth status={formik.status}/>
 		</div>
 	)
 }
