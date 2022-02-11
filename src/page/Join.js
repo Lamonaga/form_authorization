@@ -6,15 +6,25 @@ import * as yup from 'yup'
 import {useDispatch, useSelector} from "react-redux";
 
 import {FETCH_MESSAGES_REQUEST} from "../../src/store/reqReducer";
+import {useEffect} from "react";
 
 
 const Join = () => {
+	const error = []
+
 	const dispatch = useDispatch()
 	const data = useSelector(state => state.regUser)
 
-	const handleReq = () => {
+	const handleReq = async () => {
 		dispatch({type: FETCH_MESSAGES_REQUEST, payload: formik.values})
+		formik.setStatus(undefined)
 	}
+
+	error.push(data.statusError)
+
+	useEffect(() => {
+		formik.setStatus(data.statusError)
+	}, error)
 
 	const validationsSchema = yup.object().shape({
 		name: yup.string().required('Required'),
@@ -28,6 +38,7 @@ const Join = () => {
 		initialValues: {
 			name: '', surname: '', email: '', password: '', confirmPassword: '',
 		}, onSubmit: handleReq, validateOnBlur: true, validationSchema: validationsSchema,
+
 	});
 
 	return (
@@ -96,8 +107,10 @@ const Join = () => {
 
 				<button className='btn_submit' type="submit">Submit</button>
 			</form>
-			{data.statusError === 'auth/email-already-in-use' ? <div className='error'>This email is not registered</div> : <></>}
-			{data.statusError === 'auth/weak-password' ? <div className='error'>Password must be more than 6 characters</div> : <></>}
+			{formik.status === 'auth/invalid-email' ?
+				<div className='error'>This email is not registered</div> : <></>}
+			{formik.status === 'auth/weak-password' ?
+				<div className='error'>Password must be more than 6 characters</div> : <></>}
 		</div>
 	)
 }
