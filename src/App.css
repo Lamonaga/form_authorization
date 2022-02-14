@@ -1,0 +1,18 @@
+
+.App {
+  margin-top: 100px;
+}
+
+.link_auth {
+  text-align: center;
+}
+
+.btn_auth {
+  font-size: 15px;
+  color: #fff;
+  margin: 10px;
+  padding: 10px 30px;
+  border: none;
+  background-color: #4CAF50;
+  border-radius: 10px;
+}
