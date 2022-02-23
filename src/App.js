@@ -7,6 +7,7 @@ import {
 	Link
 } from "react-router-dom";
 import {useSelector} from "react-redux";
+import StartPage from "./page/StartPage";
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 
 	return (<div className='App'>
 
-		{data.statusReg ? (<div>login yes</div>) : <>	<div className='link_auth'>
+		{data.statusReg ? (<StartPage/>) : <>	<div className='link_auth'>
 			<Link to='/join'><button className='btn_auth'>Join</button></Link>
 			<Link to='/login'><button className='btn_auth'>Login</button></Link>
 		</div>

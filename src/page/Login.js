@@ -10,7 +10,6 @@ import ErrorAuth from "../components/ErrorAuth";
 
 
 const Login = () => {
-	const error = []
 
 	const dispatch = useDispatch()
 	const data = useSelector(state => state.regUser)
@@ -20,11 +19,9 @@ const Login = () => {
 		formik.setStatus(undefined)
 	}
 
-	error.push(data.statusError)
-	console.log(data.statusError)
 	useEffect(() => {
 		formik.setStatus(data.statusError)
-	}, error)
+	}, [data.statusError])
 
 	const validationsSchema = yup.object().shape({
 		email: yup.string().required('Required'),

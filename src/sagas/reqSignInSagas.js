@@ -10,9 +10,6 @@ import {auth} from "../firebase";
 export function* reqSignInWorker({payload}) {
 	try {
 		yield signInWithEmailAndPassword(auth, payload.email, payload.password)
-			.then((userCredential) => {
-				const user = userCredential.user
-			})
 		yield put({type: FETCH_MESSAGES_SUCCESS})
 	} catch (error) {
 		yield put({type: FETCH_MESSAGES_FAILURE, payload: error.code})

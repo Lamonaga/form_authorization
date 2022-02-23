@@ -1,4 +1,5 @@
 import './style.css'
+import PropTypes from 'prop-types'
 
 const Input = ({onChange, value, id, name, type}) => {
     return (
@@ -12,5 +13,10 @@ const Input = ({onChange, value, id, name, type}) => {
         </>
     )
 }
+
+Input.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+};
 
 export default Input;
