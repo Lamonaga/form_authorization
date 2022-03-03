@@ -1,22 +1,25 @@
-import React from 'react'
-import {mount, shallow} from 'enzyme'
-import Join from './Join'
+import React from "react";
+
+import {mount} from "enzyme";
+import Join from "./Join";
+
 import enzymeConfig from '../enzymeConfig'
-import {Provider} from "react-redux";
 import store from "../store";
+import {Provider} from "react-redux";
 
-describe('<Join/>', () => { // группируем
-	const mockJoin = jest.fn() // мок для экшена login (this.props.logIn)
 
-	const initialState = {
-		name: '', surname: '', email: '', password: '', confirmPassword: '',
-	}
-	it('Should capture lastname correctly onChange', function(){
-
-		const component = mount(<Provider store={store}><Join /></Provider>);
-		const input = component.find('Input').at(0);
-		input.instance().value = 'asd@asd.ru'
-		input.simulate('change');
-		expect(component.state().email).toEqual('asd@asd.ru');
-	})
+describe('SignupForm', () => {
+	it('should update email field on change', () => {
+		const component = mount(<Provider store={store}> <Join/></Provider>);
+		const emailInput = component.find("input[name='email']");
+		emailInput.simulate('change', {
+			persist: () => {
+			},
+			target: {
+				name: 'email',
+				value: 'email@gmail.com'
+			}
+		});
+		expect(emailInput.html()).toMatch('email@gmail.com');
+	});
 })

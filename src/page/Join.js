@@ -41,7 +41,6 @@ const Join = () => {
 		}, onSubmit: handleReq, validateOnBlur: true, validationSchema: validationsSchema,
 
 	});
-
 	return (
 		<div className="form_auth">
 			<form className='form' onSubmit={formik.handleSubmit}>
