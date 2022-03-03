@@ -38,3 +38,23 @@ p {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.fa-gitlab {
+  font-size: 70px;
+  color: #4CAF50;
+}
+
+.git__icon {
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 15px;
+  display: block;
+  transition: transform .1s linear;
+}
+
+.git__icon:hover {
+  transform: scale(1.1)
+  
+  
+  
+}
