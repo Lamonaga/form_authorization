@@ -3,7 +3,7 @@ import React from "react";
 import {mount} from "enzyme";
 import Join from "./Join";
 
-import enzymeConfig from '../enzymeConfig'
+import '../enzymeConfig'
 import store from "../store";
 import {Provider} from "react-redux";
 

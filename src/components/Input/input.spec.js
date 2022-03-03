@@ -2,7 +2,7 @@ import React from "react";
 
 import {shallow} from "enzyme";
 
-import enzymeConfig from '../../enzymeConfig'
+import '../../enzymeConfig'
 import Input from "./index";
 
 
@@ -10,11 +10,10 @@ const setUp = () => shallow(<Input/>);
 
 	describe("Input component", () => {
 		let component;
-		let instance;
 
 		beforeEach(() => {
 			component = setUp();
-			instance = component.instance();
+			component.instance();
 		})
 
 		it("should render Input conponent", () => {
