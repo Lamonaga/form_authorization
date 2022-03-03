@@ -27,7 +27,7 @@ function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/login" element={<Login />} />
           </Routes>
-          <a className="git__icon" href="https://gitlab.com/Lamonaga/form_authorization"><i className="fa-brands fa-gitlab"></i></a>
+          <a className="git__icon" href="https://gitlab.com/Lamonaga/form_authorization">НеХуй<i className="fa-brands fa-gitlab"></i></a>
         </>
       )}
     </div>
