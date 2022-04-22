@@ -5,7 +5,6 @@ import * as yup from "yup";
 
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_SIGNIN_REQUEST } from "../../src/store/reqReducer";
-import { useEffect } from "react";
 import ErrorAuth from "../components/ErrorAuth";
 
 const Login = () => {
