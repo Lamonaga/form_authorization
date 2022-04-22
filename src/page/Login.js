@@ -14,7 +14,6 @@ const Login = () => {
 
   const handleReq = () => {
     dispatch({ type: FETCH_SIGNIN_REQUEST, payload: formik.values });
-    formik.setStatus(undefined);
   };
 
   const validationsSchema = yup.object().shape({
@@ -31,10 +30,6 @@ const Login = () => {
     validateOnBlur: true,
     validationSchema: validationsSchema,
   });
-
-  useEffect(() => {
-    formik.setStatus(data.statusError);
-  }, [data.statusError, formik]);
 
   return (
     <div className="form_auth">
@@ -71,7 +66,7 @@ const Login = () => {
           Submit
         </button>
       </form>
-      <ErrorAuth status={formik.status} />
+      <ErrorAuth status={data.statusError} />
     </div>
   );
 };
